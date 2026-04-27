@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<head>
+
+</head>
+<body>
+    <input type="file" id="folder" webkitdirectory multiple accept="audio/*">
+
+    <br><br>
+
+    <button onclick="playRandom()">Play random</button>
+
+    <br><br>
+
+    <audio id="player" controls></audio>
+
+    <script>
+    let files = []
+
+    document.getElementById("folder").addEventListener("change", e => {
+    files = Array.from(e.target.files).filter(f => f.type.startsWith("audio"))
+    })
+
+    function playRandom() {
+    if (files.length === 0) return
+
+    const randomFile = files[Math.floor(Math.random() * files.length)]
+    const url = URL.createObjectURL(randomFile)
+
+    const player = document.getElementById("player")
+    player.src = url
+    player.play()
+    }
+    </script>
+</body>
