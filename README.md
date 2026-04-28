@@ -1,6 +1,8 @@
 # Random Audio Player
 
+https://wamoya.github.io/random-audio-player
+
 ## TODO
 - [ ] CSS
-- [ ] Hide/Show file name
-- [ ] Remove current file from the playlist
+- [x] Hide/Show file name
+- [x] Remove current file from the playlist

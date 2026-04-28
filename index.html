@@ -8,27 +8,52 @@
     <br><br>
 
     <button onclick="playRandom()">Play random</button>
+    <p id="queueLength"></p>
 
-    <br><br>
+    <br>
 
+    <button onclick="toggleShowName()">Toggle show name</button>
+    <p id="filename"></p>
     <audio id="player" controls></audio>
+
+    <br>
+
+    <button onclick="removeFromQueue()">Remove from queue</button>
 
     <script>
     let files = []
+    let queue = []
+    let showName = false
+    let currentFile = null
 
     document.getElementById("folder").addEventListener("change", e => {
     files = Array.from(e.target.files).filter(f => f.type.startsWith("audio"))
+    queue = files
     })
 
     function playRandom() {
-    if (files.length === 0) return
+        if (queue.length === 0) return
 
-    const randomFile = files[Math.floor(Math.random() * files.length)]
-    const url = URL.createObjectURL(randomFile)
+        currentFile = queue[Math.floor(Math.random() * queue.length)]
+        const url = URL.createObjectURL(currentFile)
 
-    const player = document.getElementById("player")
-    player.src = url
-    player.play()
+        const player = document.getElementById("player")
+        player.src = url
+        player.play()
+
+        queueLength.textContent = "Queue size: " + queue.length
+        showName = false
+        filename.textContent = showName ? currentFile.name : ""
+    }
+    function toggleShowName() {
+        showName = !showName
+        filename.textContent = showName ? currentFile.name : ""
+    }
+    function removeFromQueue() {
+        const index = queue.indexOf(currentFile)
+        queue.splice(index, 1)
+
+        playRandom()
     }
     </script>
 </body>
