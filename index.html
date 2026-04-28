@@ -1,59 +1,49 @@
 <!DOCTYPE html>
-<head>
+<html lang="es">
+    <head>
+        <meta charset="utf-8">
+        <title>Yo más</title>
+        <link rel="stylesheet" href="styles/style.css">
+        <link rel="icon" type="image/x-icon" href="img/favicon.ico">
+    </head>
+    <body>
+        <div id="main_container">
+            <div id="control_pannel">
+                <label id="browse-input" for="folder"><img src="img/folder.png" style="width: 2rem"></label>
+                <input type="file" id="folder" webkitdirectory multiple accept="audio/*">
+            </div>
 
-</head>
-<body>
-    <input type="file" id="folder" webkitdirectory multiple accept="audio/*">
+            <div class="main_pannel">
+                <br>
+                <button onclick="playRandom()">
+                    <div class="shuffle-button">
+                        <img src="img/shuffle-green.png" alt="Play random audio" style="width: 25px">
+                    </div>
+                </button>
+                <p style="display: inline" id="queueLength" style="padding-bottom:1rem">Upload audio files first</p>
 
-    <br><br>
+                <div style="display: block">
+                    <button onclick="toggleShowName()">
+                        <div>
+                            <p>Toggle show</p>
+                        </div>
+                    </button>
+                    <button onclick="removeFromQueue()">
+                        <div>
+                            <p>Remove from queue</p>
+                        </div>
+                    </button>
+                </div>
 
-    <button onclick="playRandom()">Play random</button>
-    <p id="queueLength"></p>
+                <div style="min-height:2.5rem; background-color: var(--color1); padding: 2px 4px 2px 4px; border-radius: 4px;">
+                    <p id="filename" style="margin: 0px"></p>
+                </div>
 
-    <br>
+                <br>
 
-    <button onclick="toggleShowName()">Toggle show name</button>
-    <p id="filename"></p>
-    <audio id="player" controls></audio>
-
-    <br>
-
-    <button onclick="removeFromQueue()">Remove from queue</button>
-
-    <script>
-    let files = []
-    let queue = []
-    let showName = false
-    let currentFile = null
-
-    document.getElementById("folder").addEventListener("change", e => {
-    files = Array.from(e.target.files).filter(f => f.type.startsWith("audio"))
-    queue = files
-    })
-
-    function playRandom() {
-        if (queue.length === 0) return
-
-        currentFile = queue[Math.floor(Math.random() * queue.length)]
-        const url = URL.createObjectURL(currentFile)
-
-        const player = document.getElementById("player")
-        player.src = url
-        player.play()
-
-        queueLength.textContent = "Queue size: " + queue.length
-        showName = false
-        filename.textContent = showName ? currentFile.name : ""
-    }
-    function toggleShowName() {
-        showName = !showName
-        filename.textContent = showName ? currentFile.name : ""
-    }
-    function removeFromQueue() {
-        const index = queue.indexOf(currentFile)
-        queue.splice(index, 1)
-
-        playRandom()
-    }
-    </script>
-</body>
+                <audio id="player" controls></audio>
+            </div>
+        </div>
+        <script src="scripts/main.js"></script>
+    </body>
+</html>

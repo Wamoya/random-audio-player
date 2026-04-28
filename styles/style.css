@@ -1,0 +1,79 @@
+:root {
+    --color1: #1f6f5f;
+    --color2: #2FA084;
+    --color3: #6FCF97;
+    --color4: #EEEEEE;
+}
+
+* {
+    font-family: Arial, Helvetica, sans-serif
+}
+
+body {
+    height: 100vh;
+    background-image: linear-gradient(30deg, var(--color3), var(--color1));
+    overflow: hidden;
+}
+
+#main_container {
+    margin: 10% auto;
+    width: 20rem;
+    height: 30rem;
+    box-sizing: border-box;
+}
+#control_pannel {
+    margin-left: 0.25rem
+}
+.main_pannel {
+    outline: solid var(--color2) 2px;
+    background-color: var(--color3);
+    border-radius: 15px;
+    box-shadow: 5px 10px 20px;
+    padding: 5%;
+}
+
+button {
+    margin-left: 5%;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+button div {
+    background-color: var(--color2);
+    border-radius: 4px
+}
+.shuffle-button {
+    border-radius: 100%;
+    display: grid;
+    padding: 4px;
+    background-color: black;
+}
+button div:hover {
+    transform: scale(1.1);
+}
+button div:active {
+    transform: scale(1.2)
+}
+
+button p {
+    border-radius: 100%;
+    display: grid;
+    padding: 4px;
+}
+
+#folder {
+    display: none
+}
+#browse-input img:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+}
+#browse-input img:active {
+    transform: scale(1.2)
+}
+
+#player {
+    width: 90%;
+    margin-left: 5%;
+    margin-bottom: 8%;
+}
