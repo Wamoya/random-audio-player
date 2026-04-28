@@ -7,6 +7,7 @@ const player = document.getElementById("player")
 document.getElementById("folder").addEventListener("change", e => {
     files = Array.from(e.target.files).filter(f => f.type.startsWith("audio"))
     queue = files
+    updateDOM()
 })
 
 function playRandom() {
